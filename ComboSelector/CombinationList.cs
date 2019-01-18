@@ -20,6 +20,32 @@ namespace ComboSelector
             this._Combinations = new List<Combination>();
         }
 
+
+        #region Public Static Methods
+        /// <summary>
+        /// Returns a list of all different combination of three numbers from the specified array. 
+        /// </summary>
+        /// <param name="nums">specified array of ints to be considered for the combination</param>
+        /// <returns></returns>
+        public static List<Combination> PickAll(int[] nums)
+        {
+            var t = new CombinationList(nums);
+            return t.PickAll();
+        }
+
+        /// <summary>
+        /// Returns a list of all different combination that have a sum value equal to the specified int 
+        /// </summary>
+        /// <param name="nums">specified array of ints to be considered for the combination</param>
+        /// <param name="s1">specified int that the same value of combinations should equal</param>
+        /// <returns></returns>
+        public static List<Combination> PickSumOf(int[] nums, int s1)
+        {
+            var t = new CombinationList(nums);
+            return t.PickSumOf(s1);
+        }
+        #endregion
+
         #region Public Methods         
         /// <summary>
         /// Returns a list of all different combination of three numbers from the specified array. 
@@ -31,13 +57,13 @@ namespace ComboSelector
         }
 
         /// <summary>
-        /// Returns a list of Combinations that have a sum value equal to the specified int
+        /// Returns a list of all different combinations that have a sum value equal to the specified int
         /// </summary>
-        /// <param name="num">specified int that the sum value of combinations should equal</param>
+        /// <param name="s1">specified int that the sum value of combinations should equal</param>
         /// <returns>List of Combination objects</returns>
-        public List<Combination> PickSumOf(int num)
+        public List<Combination> PickSumOf(int s1)
         {
-            this._SumOf = num;
+            this._SumOf = s1;
             return Pick(this._Nums);
         }
         #endregion
@@ -111,5 +137,5 @@ namespace ComboSelector
             }
         }
         #endregion
-    }   
+    }
 }

@@ -49,7 +49,7 @@ namespace ComboSelector
             if (a < c && c < b)
                 ChoicesTuple = new Tuple<int, int, int>(a, c, b);
 
-            return $"Combo - {{ {ChoicesTuple.Item1.ToString("00")} : {ChoicesTuple.Item2.ToString("00")} : {ChoicesTuple.Item3.ToString("00")} }}  Sum: {this.Sum} ";
+            return $"Combo - {{ {ChoicesTuple.Item1.ToString("00")} : {ChoicesTuple.Item2.ToString("00")} : {ChoicesTuple.Item3.ToString("00")} }}  \tSum: {this.Sum} ";
         }
         #endregion
 

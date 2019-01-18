@@ -15,8 +15,7 @@ namespace ComboSelector
             do
             {
                 // Allow to pass in a list of nums from a file or input stream
-                int[] nums = new[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-                CombinationList c = new CombinationList(nums);
+                int[] nums = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
                 var t = 0;
 
@@ -26,11 +25,12 @@ namespace ComboSelector
                     Console.Write("Enter SumOf Value: ");
                 } while (!Int32.TryParse(Console.ReadLine(), out t));
 
-                var v2 = c.PickSumOf(t);
+                //var v3 = CombinationList.PickSumOf(nums, t);
+                //var v2 = c.PickSumOf(t);
 
                 // If sorting and filtering on Combination / Combination List object worked this would not be needed 
                 List<string> list = new List<string>();
-                v2.ForEach(x => list.Add((!list.Contains(x.ToString())) ? x.ToString() : ""));
+                CombinationList.PickSumOf(nums, t).ForEach(x => list.Add((!list.Contains(x.ToString())) ? x.ToString() : ""));
                 list = list.Where(x => x != "").ToList();
                 list.Sort();
                 list.ForEach(x => Console.WriteLine(x));
@@ -41,17 +41,26 @@ namespace ComboSelector
                     Directory.CreateDirectory(_currentDir);
 
                 // Break out into seperate class file creating objects
-                StreamWriter sw = new StreamWriter(new FileStream(
-                    _currentDir + @"\results_value-" + t + DateTime.Now.ToString("_yyyy-MM-dd hh-mm-ss") +
-                    ".txt", FileMode.OpenOrCreate));
+                // Testing
+                //StreamWriter sw = new StreamWriter(new FileStream($"{_currentDir}\\Combination_{DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss")} Value-{t}.txt", FileMode.OpenOrCreate));
+                StreamWriter sw = new StreamWriter(new FileStream($"{_currentDir}\\Combination-Value_{t}.txt", FileMode.OpenOrCreate));
+
+
+                sw.WriteLine($"Results: Sum-Value:{t} Numbers Range:({nums[0]}-{nums[nums.Length-1]})");
+                sw.WriteLine($"{new String('*', 40).ToString()}\n");
                 list.ForEach(x => sw.WriteLine(x));
+
+                sw.WriteLine($"{new String('*', 40).ToString()}\n");
+
                 sw.Close();
 
-            } while (!ConsoleKey.Q.Equals((Console.ReadLine())));
+                Console.WriteLine("[Q]-Quit Anyother key to continue");
+            } while (!Console.ReadKey().Key.Equals(ConsoleKey.Q));
 
-            // Put of basic menu object
-            Console.WriteLine("press and key to continue . . .");
-            Console.ReadLine();
+            // Put of basic menu object, use either check and exit or wait and exit methods
+            Console.WriteLine("\n Exiting program . . .");
+            System.Threading.Thread.Sleep(1500);
+            //Console.ReadLine();
         }
     }
 }
