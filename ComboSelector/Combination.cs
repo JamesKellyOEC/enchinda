@@ -20,11 +20,20 @@ namespace ComboSelector
         }
 
         #region Public Methods
+        /// <summary>
+        /// Prints the ToString() value of the current object
+        /// </summary>
         public void Print()
         {
             Console.WriteLine(ToString());
         }
 
+        /// <summary>
+        /// Override the default ToString() method from the object class, returns a string value with
+        /// the combination values sorted by lowest to highest
+        /// </summary>
+        /// <remarks>This would not be need if Sort() and Filter() methods were add to this class</remarks>
+        /// <returns>A sorted string representation of the object and its properties</returns>
         public override string ToString()
         {
             int a = ChoicesTuple.Item1, b = ChoicesTuple.Item2, c = ChoicesTuple.Item3;
@@ -45,11 +54,18 @@ namespace ComboSelector
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Sets the sum value of the three combination values
+        /// </summary>
         private void SetSum()
         {
             Sum = ChoicesTuple.Item1 + ChoicesTuple.Item2 + ChoicesTuple.Item3;
         }
 
+        /// <summary>
+        /// Sets the ComboId of the current object 
+        /// </summary>
+        /// <remarks>This is not required, unless or untill the Sort() and Filter() methods are added</remarks>
         private void SetComboId()
         {
             ComboId = ChoicesTuple.Item1 + "-" + ChoicesTuple.Item2 + "-" + ChoicesTuple.Item3;
